@@ -18,16 +18,16 @@ class Robot
     public:
         Robot(){
 		}
-	    Robot(double l1,double l2,Joint jt1,Joint jt2,Frame WF)
+	    Robot(const double &l1,const double &l2,const Joint &jt1,const Joint &jt2,const Frame &wf)
 	    {
 	      	length1=l1;
 	      	length2=l2;
-	        jt1.CopyTo(joint1);
-	        jt2.CopyTo(joint2);
-	        WorldFrame=WF;  
-	        solver.solverinit(l1,l2,jt1.getthetamax(),jt1.getthetamin(),jt2.getthetamax(),jt2.getthetamin()); //初始化robot对应的求解器 
+			joint1 = jt1;
+			joint2 = jt2;
+			WorldFrame = wf;
+			solver.solverinit(l1, l2, joint1.getthetamax(), joint1.getthetamin(), joint2.getthetamax(), joint2.getthetamin()); //初始化robot对应的求解器 
 		}
-		void TaskFrameCreate(Frame &tf);
+		void TaskFrameCreate(const Frame &tf);
         void PTPMove(Frame &fr,Point &pt); 
         void RobotShow(void);
         inline double getlength1(void)
@@ -46,11 +46,11 @@ class Robot
         {
         	return this->joint2;
 		}
-		inline void setjoint1(Joint &jt)
+		inline void setjoint1(const Joint &jt)
 		{
 			this->joint1=jt;
 		} 
-		inline void setjoint2(Joint &jt)
+		inline void setjoint2(const Joint &jt)
 		{
 			this->joint2=jt;
 		}

@@ -8,7 +8,7 @@ class Joint
     public:
 		Joint(){
 		}
-		Joint(double xx,double yy,double thetaa,double thetaminn,double thetamaxx,double thetazeroo)
+		Joint(const double &xx,const double &yy,const double &thetaa,const double &thetaminn,const double &thetamaxx,const double &thetazeroo)
 		{
 			x=xx;
 			y=yy;
@@ -17,7 +17,17 @@ class Joint
 			thetamax=thetamaxx;
 			thetazero=thetazeroo;
 		}
-		CopyTo(Joint &jt)
+		Joint operator=(const Joint &jt)
+		{
+			this->x = jt.x;
+			this->y = jt.y;
+			this->theta = jt.theta;
+			this->thetamin = jt.thetamin;
+			this->thetamax = jt.thetamax;
+			this->thetazero = jt.thetazero;
+			return *this;
+		}
+		void CopyTo(Joint &jt)
 		{
 			jt.x=x;
 			jt.y=y;

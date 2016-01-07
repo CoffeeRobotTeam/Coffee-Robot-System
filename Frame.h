@@ -14,20 +14,27 @@ using namespace Eigen;
 	public: 
 	    Point(){
 		};
-		Point(double xx,double yy){
+		Point(const double xx,const double yy){
 			x=xx;
 	    	y=yy;
 		};
-	    Point(string nam,double xx,double yy){
+	    Point(const string nam,const double xx,const double yy){
 	    	name=nam;
 	    	x=xx;
 	    	y=yy;
 		}
-		Point(Point &p){
+		Point(const Point &p){
 			name=p.name;
 			x=p.x;
 			y=p.y;
 		}
+		Point operator=(const Point &pt)
+		{
+			this->name = pt.name;//使用pt.getname()会认为改变了pt,不被允许
+			this->x = pt.x;
+			this->y = pt.y;
+			return *this;
+		} 
 		void copyto(Point &p);
 		void get_cin_point(void);
 		inline double getx(void)
@@ -37,7 +44,7 @@ using namespace Eigen;
 		inline double gety(void)
 		{
 			return this->y;
-		}
+	    }
 		inline string getname(void)
 		{
 			return this->name;
@@ -48,33 +55,43 @@ class Frame
 {
 	private:
 		string name;
+		Point origin;
 	    Vector2d vector_X;
-	    Vector2d vector_Y;
-	    Point origin;
+	    Vector2d vector_Y;    
 	public:
 	   
-	    Frame(){
+		Frame(){
 		}
-	    Frame(string nam,Vector2d &vx,Vector2d &vy,Point &oripoint)
+		Frame(const string &nam, const Vector2d &vx, const Vector2d &vy, const Point &oripoint)
 	    {
 	    	name=nam;
+			Vector2d vxx,vyy;
 	    	double a=sqrt(pow(vx[0],2)+pow(vx[1],2));  //化为单位方向向量 
-	    	vx[0]=vx[0]/a;
-	    	vx[1]=vx[1]/a;
+	    	vxx[0]=vx[0]/a;
+	    	vxx[1]=vx[1]/a;
 	    	double b=sqrt(pow(vy[0],2)+pow(vy[1],2));  //化为单位方向向量
-	    	vy[0]=vy[0]/a;
-	    	vy[1]=vy[1]/a;	    	
-	    	vector_X=vx;
-	    	vector_Y=vy;
-            oripoint.copyto(origin);
+	    	vyy[0]=vy[0]/a;
+	    	vyy[1]=vy[1]/a;	    	
+	    	vector_X=vxx;
+	    	vector_Y=vyy;
+			origin = oripoint;
 		}
-		Frame(Frame &fr)
+		Frame(const Frame &fr)
 		{
-			name=fr.getname();
+			name=fr.name;
 			vector_X=fr.vector_X;
-			vector_Y=fr.getVector_Y();
-		    fr.getorigin().copyto(origin);
+			vector_Y=fr.vector_Y;
+			origin = fr.origin;
 		}
+		Frame operator =(const Frame &fr)
+		{
+			this->name = fr.name;
+			this->origin = fr.origin;
+			this->vector_X = fr.vector_X;
+			this->vector_Y = fr.vector_Y;
+			return *this;
+		}
+		void Copyto(Frame &fr);
 		inline string getname(void)
 		{
 			return this->name;
@@ -91,7 +108,22 @@ class Frame
 		{
 			return this->origin;
 		}
-
+		inline void setname(const string &nam)
+		{
+			name=nam;
+		}
+		inline void setVector_X(const Vector2d &vec_x)
+		{
+			vector_X = vec_x;
+		}
+		inline void setVector_Y(const Vector2d &vec_y)
+		{
+			vector_Y = vec_y;
+		}
+		inline void setorigin(const Point &oripoint)
+		{
+			origin = oripoint;
+		}
 };
 class JointFrame
 {
@@ -100,7 +132,7 @@ class JointFrame
 	public:
 		JointFrame(){
 		}
-		JointFrame(double t1,double t2)
+		JointFrame(const double &t1,const double &t2)
 		{
 			this->theta1=t1;
 			this->theta2=t2;
