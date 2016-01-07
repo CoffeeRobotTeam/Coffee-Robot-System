@@ -2,14 +2,26 @@
 #include "data.h"
 #include<iostream>
 
+Data::Data(){
+	mysql_init(&mysql);
+	this->user_name = "root";
+	this->user_pw = "";
+	this->db = "coffee_robot";
+	this->init();
+}
+
 
 Data::Data(char *user_name, char *user_pw, char *db){
 	mysql_init(&mysql);
 	this->user_name = user_name;
 	this->user_pw = user_pw;
 	this->db = db;
-	mysql_init(&mysql);
+	this->init();
+	
+}
 
+void Data::init(){
+	mysql_init(&mysql);
 	if(mysql_real_connect(&mysql, NULL, user_name, user_pw, db, 0, NULL, 0)){
 		std::cout<< " the connection is successful!" << std::endl;
 		mysql_query(&mysql, "SET NAMES GBK"); //设置编码格式,WIN无法显示中文
@@ -21,7 +33,6 @@ Data::Data(char *user_name, char *user_pw, char *db){
 		std::cout<< error_msg << std::endl; 
 	}
 }
-
 
 
 
@@ -42,10 +53,10 @@ void Data::select(std::string select_str, std::vector<char **> *r){
 }
 
 /**
-** insert data
+** insert , update, delete
 **/
-bool Data::insert(std::string insert_str){
-	if(mysql_query(&mysql, insert_str.c_str())){
+bool Data::exec(char* insert_str){
+	if(mysql_query(&mysql, insert_str)){
 		return false;
 	}
 	return true;

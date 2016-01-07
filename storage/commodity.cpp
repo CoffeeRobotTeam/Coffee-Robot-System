@@ -21,22 +21,27 @@ Commodity::Commodity(char *name, unsigned int price, unsigned long create_at, un
 }
 
 
- bool Commodity::insert(){
-	 std::string s = "INSERT INTO commodity (name, price, create_at, update_at, description) VALUES ('%s', %d, %lu, %lu, '%s')";
-	 char insert_str[100];
-	 sprintf(insert_str,s.c_str() , name, price, create_at, update_at, description);
-	 //std::cout<<"insert_str="<<insert_str<<std::endl;
-	 return true;
+  
+ int Commodity::getID(){
+	 return ID;
+ }
+
+ char * Commodity::getName(){
+	 return name;
+ }
+ 
+ int Commodity::getPrice(){
+	 return price;
  }
 
 
 Commodity::~Commodity(void)
 {
+
 }
 
 
-
 void Commodity::print(){
-	std::cout<<"id="<<ID<<"\t"<<"name="<<name<<"price="<<price<<"\t"<<"create_at="<<create_at<<"\t"<<"update_at="<<update_at;
+	std::cout<<"id="<<ID<<"\t"<<"name="<<name<<"\tprice="<<price<<"\t"<<"create_at="<<create_at<<"\t"<<"update_at="<<update_at;
 	std::cout<<"\t"<<"description="<<description<<std::endl;
 }

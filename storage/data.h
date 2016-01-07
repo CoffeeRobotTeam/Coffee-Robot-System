@@ -10,11 +10,13 @@ class Data{
 
 public:
 	~Data();
+	Data();
 	Data(char *user_name, char * user_pw, char *db);
+	void init();
 	void select(std::string select_str, std::vector<char **> *r);
 	unsigned int rows_number();
 	unsigned int fields_number();
-	bool insert(std::string insert_str);
+	bool exec(char* insert_str);
 
 private:
 	MYSQL_RES *mysql_res;
