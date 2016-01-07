@@ -1,0 +1,6 @@
+Debug/*
+*.swp
+x64/*
+ipch/*
+storage/Debug/*
+storage/x64/*
