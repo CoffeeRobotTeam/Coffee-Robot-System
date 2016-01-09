@@ -8,7 +8,7 @@
  		double length1,length2;
  		double theta1max,theta1min,theta2max,theta2min;
  	public:
- 		JointFrame ToJoint(Point ptaim);
+ 		JointFrame ToJoint(Point ptaim,JointFrame jointframe);
  		Point JointTo(JointFrame jf);
  		void setlength1(double l1)
  		{

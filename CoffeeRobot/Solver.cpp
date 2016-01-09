@@ -1,10 +1,12 @@
 #include "Solver.h"
-JointFrame Solver::ToJoint(Point ptaim)
+JointFrame Solver::ToJoint(Point ptaim, JointFrame jointframe)
 {
+	JointFrame PreJointFrame(jointframe);
 	double t1,t2;
 	bool flag[2]={false};
 	bool flag1=false;
 	double theta[2][2];
+	double temptheta1[2], temptheta2[2];
 	int cnt=0;
 	double jt_end_x=ptaim.getx();
 	double jt_end_y=ptaim.gety();
@@ -20,7 +22,6 @@ JointFrame Solver::ToJoint(Point ptaim)
 				if(abs(jt_end_x-length1*cos(theta[0][0])-length2*cos(theta[0][1]))<0.01&abs(jt_end_y-length1*sin(theta[0][0])-length2*sin(theta[0][1]))<0.01)
 				{
 				  flag[0]=true;
-				  cout << "a";
 				}			
 			}
 		}
@@ -31,30 +32,42 @@ JointFrame Solver::ToJoint(Point ptaim)
 				if(abs(jt_end_x-length1*cos(theta[1][0])-length2*cos(theta[1][1]))<0.01&abs(jt_end_y-length1*sin(theta[1][0])-length2*sin(theta[1][1]))<0.01)
 				{
 					flag[1]=true;
-					cout << "b";
 				}			
 			}
 		}
-		for(int i=0;i<2;i++)
+
+		if (flag[0] == true&&flag[1]==false)
 		{
-			if(flag[i]==true) {
-				flag1=true;
-				cnt++;
-				double theta1=theta[i][0];
-				double theta2=theta[i][1];
-				JointFrame jf(theta1,theta2);
-				//return jf;   //待改进，应择优输出 
-				cout<<"第"<<cnt<<"种解为：";
-				cout<<"关节1转角"<< theta[i][0]*180/PI;
-		        cout<<"关节2转角"<< theta[i][1]*180/PI<<endl;	
-			} 
+			 flag1 = true;
+			 JointFrame jf(theta[0][0], theta[0][1]);
+			 return jf;
 		}
-		
+		else if (flag[0] == false && flag[1] == true) 
+		{
+			flag1 = true;
+			JointFrame jf(theta[1][0], theta[1][1]);
+			return jf;
+		}
+		else if (flag[0] == true && flag[1] == true) //选择转动较小的方案进行控制
+		{
+			flag1 = true;
+			double delta1 = abs(theta[0][0] - PreJointFrame.gettheta1()) + abs(theta[0][1] - PreJointFrame.gettheta2());
+			double delta2 = abs(theta[1][0] - PreJointFrame.gettheta1()) + abs(theta[1][1] - PreJointFrame.gettheta2());
+			if (delta1 <= delta2) 
+			{
+				JointFrame jf(theta[0][0], theta[0][1]); return jf;
+			}
+			else 
+			{
+				JointFrame jf(theta[1][0], theta[1][1]); return jf;
+			}
+			
+		}
+		else flag1 = false;	
 	}
 	
 	if(flag1==false) cout<<"无法达到指定位置"<<endl; 
-	JointFrame jf(0, 0);
-	return jf;
+	
 }
 
 Point Solver::JointTo(JointFrame jf)

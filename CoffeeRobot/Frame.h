@@ -145,6 +145,14 @@ class JointFrame
 		{
 			return this->theta2; 
 		}
+		inline void settheta1(double theta)
+		{
+			theta1=theta;
+		}
+		inline void settheta2(double theta)
+		{
+			theta2 = theta;
+		}
 			
 };
 #endif

@@ -14,6 +14,7 @@ class Robot
         Joint joint1,joint2;
         Frame WorldFrame;
         vector<Frame> fv;
+		JointFrame jointframe;
         Solver solver;
     public:
         Robot(){
@@ -25,6 +26,8 @@ class Robot
 			joint1 = jt1;
 			joint2 = jt2;
 			WorldFrame = wf;
+			jointframe.settheta1(joint1.gettheta());
+			jointframe.settheta2(joint2.gettheta());
 			solver.solverinit(l1, l2, joint1.getthetamax(), joint1.getthetamin(), joint2.getthetamax(), joint2.getthetamin()); //初始化robot对应的求解器 
 		}
 		void TaskFrameCreate(const Frame &tf);
@@ -46,13 +49,19 @@ class Robot
         {
         	return this->joint2;
 		}
+		inline JointFrame getjointframe(void)
+		{
+			return this->jointframe;
+		}
 		inline void setjoint1(const Joint &jt)
 		{
 			this->joint1=jt;
+			jointframe.settheta1(joint1.gettheta()); //同步更新关节坐标系
 		} 
 		inline void setjoint2(const Joint &jt)
 		{
 			this->joint2=jt;
+			jointframe.settheta2(joint2.gettheta());  //同步更新关节坐标系
 		}
  };
 
