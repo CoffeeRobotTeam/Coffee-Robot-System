@@ -19,10 +19,12 @@ void Robot::PTPMove(Frame &fr,Point &pt)
  joint2.sety(y);
  //求解关节角度
  Point ptaim(x,y);
- JointFrame jt=solver.ToJoint(ptaim);
+ JointFrame jt=solver.ToJoint(ptaim,jointframe);
  //更新joint1、joint2的关节坐标 
  joint1.settheta(jt.gettheta1());
  joint2.settheta(jt.gettheta2());
+ jointframe.settheta1(jt.gettheta1());
+ jointframe.settheta2(jt.gettheta2());
   //更新joint1的笛卡尔坐标 
  joint1.setx(length1*cos(joint1.gettheta()));
  joint1.sety(length2*sin(joint1.gettheta()));
@@ -30,8 +32,8 @@ void Robot::PTPMove(Frame &fr,Point &pt)
 }
 
 void Robot::RobotShow(void){
-	//cout<<"关节1转角"<< joint1.gettheta()*180/PI;
-	//cout<<"关节2转角"<< joint2.gettheta()*180/PI;
-	//cout<<"关节1坐标("<<joint1.getx()<<","<<joint1.gety()<<")";
-	//cout<<"关节2坐标("<<joint2.getx()<<","<<joint2.gety()<<")"<<endl;	
+	cout<<"关节1转角"<< joint1.gettheta()*180/PI;
+	cout<<"关节2转角"<< joint2.gettheta()*180/PI;
+	cout<<"关节1坐标("<<joint1.getx()<<","<<joint1.gety()<<")";
+	cout<<"关节2坐标("<<joint2.getx()<<","<<joint2.gety()<<")"<<endl;	
 }

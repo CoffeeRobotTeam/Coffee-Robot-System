@@ -1,4 +1,5 @@
 #pragma once
+#include "Frame.h"
 
 
 // COrderCoffeeDlg ¶Ô»°¿ò
@@ -20,9 +21,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOrdercoffeeButton();
-	bool m_BigCup;
-	bool m_MiddleCup;
-	bool m_SmallCup;
+//	bool m_BigCup;
+//	bool m_MiddleCup;
+//	bool m_SmallCup;
 	bool m_Type1;
 	bool m_Type2;
 	bool m_Tpye3;
@@ -35,4 +36,10 @@ public:
 	CString m_RobotAction;
 	double m_X_Angle;
 	double m_Y_Angle;
+	void DisplayAngle(Point &prepoint,Point &nowpoint);
+//	double m_Pos_X;
+	afx_msg void OnBnClickedBigcupRadio1();
+	int m_CupRadio1;
+	int m_CupRadio2;
+	int m_CupRadio3;
 };

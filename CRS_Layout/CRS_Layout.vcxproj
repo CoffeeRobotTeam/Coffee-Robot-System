@@ -43,7 +43,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>F:\资料\学习资料\研究生\大四上\实时控制软件设计\CRS_Layout-master\CRS_Layout-master\CRSplusRobot\CRS_Layout\eigen-eigen;$(IncludePath)</IncludePath>
+    <IncludePath>F:\CRS\Coffee-Robot-System\CRS_Layout\eigen-eigen;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -104,10 +104,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AppInit.h" />
     <ClInclude Include="Coffee.h" />
-    <ClInclude Include="CRS_Layout.h" />
     <ClInclude Include="CRS_LayoutDlg.h" />
+    <ClInclude Include="delay.h" />
+    <ClInclude Include="display.h" />
+    <ClInclude Include="ExternValue.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Joint.h" />
     <ClInclude Include="OrderCoffeeDlg.h" />
@@ -122,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="CRS_Layout.cpp" />
     <ClCompile Include="CRS_LayoutDlg.cpp" />
+    <ClCompile Include="display.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="OrderCoffeeDlg.cpp" />
     <ClCompile Include="Robot.cpp" />

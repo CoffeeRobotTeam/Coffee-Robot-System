@@ -37,6 +37,16 @@ using namespace Eigen;
 		} 
 		void copyto(Point &p);
 		void get_cin_point(void);
+		
+		void setx(double &xx)
+		{
+			x = xx;
+		}
+
+		void sety(double &yy){
+			y = yy;
+		}
+
 		inline double getx(void)
 		{
 			return this->x;
@@ -129,7 +139,9 @@ class JointFrame
 {
 	private:
 		double theta1,theta2;
+		
 	public:
+		
 		JointFrame(){
 		}
 		JointFrame(const double &t1,const double &t2)
@@ -145,6 +157,14 @@ class JointFrame
 		{
 			return this->theta2; 
 		}
-			
+		inline void settheta1(double theta)
+		{
+			theta1=theta;
+		}
+		inline void settheta2(double theta)
+		{
+			theta2 = theta;
+		}
+				
 };
 #endif

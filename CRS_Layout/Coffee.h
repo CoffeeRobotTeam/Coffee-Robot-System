@@ -1,8 +1,26 @@
 #ifndef COFFEE_H
 #define COFFEE_H
 
-enum CupSize{Big,Middle,Small};
-enum CoffeeKinds {kindA,kindB,kindC};
+
+enum CupSize{ Big, Middle, Micro };
+enum CoffeeKinds { kind1, kind2, kind3 };
+
+typedef struct
+{
+	CupSize cupsize;
+	Point pt;
+}Cupsize2Position;
+Point MidCupPos(300, 400);
+Point MicroCupPos(400, 500);
+Point BigCupPos(500, 600);
+
+Point SugarPos(400, 400);
+Point MilkPos(450, 450);
+
+Point Coffeekind1Pos(450, 450);
+Point Coffeekind2Pos(480, 480);
+Point Coffeekind3Pos(500, 500);
+
 class CoffeeAddMaterial
 {
     private:
@@ -60,11 +78,15 @@ class Cup
 {
 private:
 	CupSize mycupsize;
-	Position mycuppos;
+	Point mycuppos;
 public:
 	Cup(){
 	}
-	Cup(const CupSize &cupsize, const Position &cuppos)
+	Cup(const CupSize &cupsize)
+	{
+		mycupsize = cupsize;
+	}
+	Cup(const CupSize &cupsize, const Point &cuppos)
 	{
 		mycuppos = cuppos;
 		mycupsize = cupsize;
@@ -73,7 +95,7 @@ public:
 	{
 		mycupsize = cupsize;
 	}
-	void setmycupsize(const Position &cupposition)
+	void setmycupsize(const Point &cupposition)
 	{
 		mycuppos = cupposition;
 	}
@@ -81,7 +103,7 @@ public:
 	{
 		return mycupsize;
 	}
-	Position getmycuppos()
+	Point getmycuppos()
 	{
 		return mycuppos;
 	}

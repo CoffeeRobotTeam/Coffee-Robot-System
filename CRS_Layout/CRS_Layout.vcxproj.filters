@@ -18,9 +18,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CRS_Layout.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CRS_LayoutDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -45,6 +42,9 @@
     <ClInclude Include="Coffee.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="display.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="Frame.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -57,7 +57,10 @@
     <ClInclude Include="Solver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AppInit.h">
+    <ClInclude Include="ExternValue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="delay.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,6 +77,15 @@
     <ClCompile Include="SaleDetailsDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SetRobotDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="display.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="Frame.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -81,12 +93,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Solver.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SetRobotDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

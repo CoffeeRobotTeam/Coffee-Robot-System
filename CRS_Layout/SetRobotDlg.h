@@ -18,4 +18,17 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 
 	DECLARE_MESSAGE_MAP()
+public:
+	double m_LegLength1;
+	double m_LegLength2;
+//	double m_Joint1Max;
+	afx_msg void OnEnChangeJoint1MaxEdit5();
+//	double m_Joint1Min;
+	double m_Joint1Zero;
+	double m_Joint2Min;
+	double m_Joint2Zero;
+	double m_Joint2Max;
+	afx_msg void OnBnClickedApplychangeButton1();
+	double m_Joint1Min;
+	double m_Joint1Max;
 };
