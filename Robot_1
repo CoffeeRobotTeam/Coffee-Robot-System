@@ -18,9 +18,9 @@ class Robot
     public:
         Robot(){
 		}
-	    Robot(double l1,double l2,Joint jt1,Joint jt2,Frame WF):length1(l1),length2(l2),jt1(joint),jt2(joint2),WorldFrame(WF)  
+	    Robot(double l1,double l2,Joint jt1,Joint jt2,Frame WF):length1(l1),length2(l2),jt1(joint),jt2(joint2),WorldFrame(WF),solver(l1,l2,jt1.getthetamax(),jt1.getthetamin(),jt2.getthetamax(),jt2.getthetamin())  
 	    {
-	        solver.solverinit(l1,l2,jt1.getthetamax(),jt1.getthetamin(),jt2.getthetamax(),jt2.getthetamin()); 
+	        
 		}
 		void TaskFrameCreate(Frame &tf);
         void PTPMove(Frame &fr,Point &pt); 
