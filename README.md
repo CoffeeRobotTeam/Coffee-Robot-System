@@ -23,3 +23,27 @@ CREATE TABLE `commodity` (
 | 20003 | 小杯纯咖啡 |  2000 | 1452048897 | 1452048897 | 无优惠      |
 +-------+------------+-------+------------+------------+-------------+
 ```
+
+```
+ CREATE TABLE `recode` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `no` varchar(32) NOT NULL DEFAULT '' COMMENT '顾客购物时的号码，需要与日期结合',
+  `CID` int(11) NOT NULL COMMENT '商品ID',
+  `num` tinyint(4) DEFAULT '0' COMMENT '购买商品的数量',
+  `consume_time` int(11) DEFAULT NULL COMMENT '消费的时间',
+  `remarks` varchar(128) DEFAULT NULL COMMENT '顾客消费的备注信息',
+  PRIMARY KEY (`ID`),
+  KEY `CID` (`CID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='顾客消费记录表';
+```
+
+数据格式如图
+查询语句为：select * from recode where no = '20160110_A001';
+```
++----+---------------+-------+------+--------------+---------+
+| ID | no            | CID   | num  | consume_time | remarks |
++----+---------------+-------+------+--------------+---------+
+|  1 | 20160110_A001 | 20001 |    2 |   1452390564 | 无      |
+|  2 | 20160110_A001 | 20002 |    1 |   1452390564 | 无      |
++----+---------------+-------+------+--------------+---------+
+```

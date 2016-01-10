@@ -11,6 +11,8 @@
 #include "commodity.h"
 #include<vector>
 #include "StorageService.h"
+#include "payment.h"
+
 using namespace std;
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
@@ -36,6 +38,11 @@ int _tmain(int argc, char** argv){
 	
 	Commodity *c = sd->getCommodityByID(20003);
 	c->print();
+
+	Payment *p = new Payment();
+	double sum = p->payWithID("20160110_A001");
+	cout<<"price = "<<sum << endl;
+	
 	return 0;
 }
 

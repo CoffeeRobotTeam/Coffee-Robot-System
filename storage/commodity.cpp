@@ -13,6 +13,7 @@ Commodity::Commodity(unsigned int id, char *name, unsigned int price, unsigned l
 }
 
 Commodity::Commodity(char *name, unsigned int price, unsigned long create_at, unsigned long update_at, char *description){
+	 ID = 0;
 	 this->name = name;
 	 this->price = price;
 	 this->create_at = create_at;

@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="commodity.h" />
     <ClInclude Include="data.h" />
+    <ClInclude Include="payment.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StorageService.h" />
     <ClInclude Include="targetver.h" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="commodity.cpp" />
     <ClCompile Include="data.cpp" />
+    <ClCompile Include="payment.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
